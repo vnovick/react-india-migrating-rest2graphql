@@ -8,8 +8,8 @@ const cors = require('cors')
 const {ApolloServer, gql} = require('apollo-server-express')
 const {typeDefs} = require('./typeDefs')
 const {resolvers} = require('./resolvers/final')
-const {PostsRESTAPI} = require('./data/postsDataSource.final')
-
+const {PostsRESTAPI} = require('./data/postsDataSource')
+const {PostsJsonDataSource} = require('./data/postsJsonDataSource.final')
 const app = express()
 
 ///////////Here we will start GraphQL implementation
@@ -23,6 +23,7 @@ const server = new ApolloServer({
   dataSources: () => {
     return {
       postsAPI: new PostsRESTAPI(),
+      postsJsonAPI: new PostsJsonDataSource(),
     }
   },
 })
