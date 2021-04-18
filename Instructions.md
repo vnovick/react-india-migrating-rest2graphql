@@ -93,3 +93,29 @@ server.applyMiddleware({app})
 
 The server will crash cause there is no schema definition for it. Your task is
 to define proper schema for it. Note that `message` is an argument
+
+6. Creating proper folder structure
+
+Once everything is working, we need to change folder structure to make our app
+more structured. Instead of having type definitions and resolvers inside our
+`app.js` you need to move type definitions and resolvers into separate folders
+following **role based** folder structure
+
+> Note this is fine for smaller projects like ours, but for larger servers it's
+> better to use **domain based** folder structure
+
+- move type definitions to `typeDefs` folder
+  - `index.js` will look like this:
+
+```javascript
+const {query} = require('./query')
+
+const typeDefs = [query]
+
+module.exports = {
+  typeDefs,
+}
+```
+
+- Move Query definition to `typeDefs/query.js`
+- Move resolvers to `resolvers/index.js`
