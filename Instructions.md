@@ -1,48 +1,95 @@
-# Exercise 2 - Explore GraphQL queries and mutations
+# Exercise 3 - GraphQL endpoint setup
 
-#### Instructions
+## Background
 
-In this exercise you are not required to make any changes to the files, but more
-exploring how you can query GraphQL endpoints
-
-- Go to [https://graphiql-online.com/](https://graphiql-online.com/) and paste
-  the following endpoint:
-  `https://migrating-from-rest-to-graphql.herokuapp.com/v1/graphql` (This
-  endpoint is already implemented GraphQL server)
-- Explore Schema and docs
-
-# Theory
-
-[GraphQL Queries syntax](https://graphql.org/learn/queries/)
-
-# Actual exercise
-
-1. Query all the posts with the avatar URL
-   [field](https://graphql.org/learn/queries/#fields) in one request
-2. Order posts based ascending based on post title(use special
-   [arguments](https://graphql.org/learn/queries/#arguments) provided for that
-   in the schema). Represent data as `ordered_array` (hint:
-   [aliases](https://graphql.org/learn/queries/#aliases))
-
-Result should look like this:
-
-```
-    "ordered_array": [
-      {
-        "title": "Ex cupidatat laborum ipsum nulla minim duis anim.",
-        "subTitle": "Veniam aliqua sit laboris laboris.",
-        "author": {
-          "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=a72ca28288878f8404a795f39642a46f"
-        }
-      }
-    ]
+```sh
+cd api
+npm install
 ```
 
-3. Insert both `authors` and `posts` in the same mutation and make sure both are
-   inserted.
-4. Create reusable insert mutation called `addPost` from that mutation using
-   [variable](https://graphql.org/learn/queries/#variables) of some
-   [input type](https://graphql.org/learn/schema/#input-types).
+Our `api` includes a new dependency:
+[apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express)
 
-Bonus Content 5. Use [Directives](https://graphql.org/learn/queries/#directives)
-to include author avatar only if `$showAvatar` flag is passed as a variable
+typically you install it by running
+
+```sh
+npm install apollo-server-express graphql --save
+```
+
+but I've included it in package.json already.
+
+#### Files
+
+These files will be modified during exercise. They also include TODO comments
+for your convenience
+
+- `api/app.js`
+
+## Instructions
+
+1. Write GraphQL Schema definition by defining root level `Query` type with one
+   single `hello` query that will return a `String`
+
+Example of how to write a schema:
+
+```graphql
+# A book has a title and an author
+type Book {
+  title: String
+  author: Author
+}
+
+# An author has a name and a list of books
+type Author {
+  name: String
+  books: [Book]
+}
+```
+
+You define your data graph's supported queries as fields of a special type
+called the Query type.
+
+```javascript
+const typeDefs = gql`
+    type Query {
+      #Your queries definition goes here
+    }
+`
+```
+
+2.add resolver for hello query that will return "Hello GraphQL"
+
+```javascript
+const resolvers = {
+  Query: {
+    // here will go your resolver function definition
+    foo: () => 'bar',
+  },
+}
+```
+
+3. create a new ApolloServer providing it type definitions just defined
+
+> Note: make sure to apply middleware before any app.use
+
+```javascript
+const {ApolloServer, gql} = require('apollo-server-express')
+
+const server = new ApolloServer({typeDefs, resolvers})
+server.applyMiddleware({app})
+```
+
+4. add `mocks: true` to ApolloServer to make sure we are able to get
+   unimplemented resolvers through mocks. Make sure to also add
+   `mockEntireSchema: false`
+
+#### Bonus Excercise
+
+5. Add the following resolver to resolver definition.
+
+```
+    helloWithMessage: (_, {message}) => message,
+```
+
+The server will crash cause there is no schema definition for it. Your task is
+to define proper schema for it. Note that `message` is an argument

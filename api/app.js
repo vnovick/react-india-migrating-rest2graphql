@@ -7,6 +7,18 @@ const jsonServer = require('json-server')
 const cors = require('cors')
 
 const app = express()
+
+///////////Here we will start GraphQL implementation
+
+// Construct a schema, using GraphQL schema language
+
+// TODO: 1. Write GraphQL Schema definition by defining root level Query type with one single hello query that will return a String
+// TODO: 2. add resolver for hello query that will return "Hello GraphQL"
+// TODO: 3. create a new ApolloServer providing it type definitions just defined
+// TODO: 4. add mocks: true to ApolloServer to make sure we are able to get unimplemented resolvers through mocks. Make sure to also add mockEntireSchema: false
+
+//////////////// End of GraphQL section
+
 app.use(logger('dev'))
 
 app.use(express.json())
