@@ -1,4 +1,4 @@
-# Exercise 3 - GraphQL endpoint setup
+# Exercise 4 - Design GraphQL Schema
 
 ## Background
 
@@ -8,88 +8,112 @@ npm install
 ```
 
 Our `api` includes a new dependency:
-[apollo-server-express](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express)
+[node-fetch](https://github.com/node-fetch/node-fetch)
 
 typically you install it by running
 
 ```sh
-npm install apollo-server-express graphql --save
+npm install node-fetch --save
 ```
 
 but I've included it in package.json already.
 
+#### Folder structure
+
+In this exercise you might have noticed the difference in folder structure.
+Instead of having type definitions and resolvers inside our `app.js` I've
+abstracted type definitions and resolvers in separate folders following **role
+based** folder structure.
+
+> Note: This is fine for smaller projects like ours, but for larger servers it's
+> better to use **domain based** folder structure
+
 #### Files
 
-These files will be modified during exercise. They also include TODO comments
-for your convenience
+These files should be modified during exercise. They also include **TODO**
+comments for your convenience
 
-- `api/app.js`
+- `typeDef/query.js` - will include additional root query for posts
+- `typeDef/index.js` - will export postType and authorType definitions after
+  implementing them
+- `typeDefs/types/postType.js` - will export postType definition
+- `typeDefs/types/authorType.js` - will export authorType definition
+- `resolvers/authorsResolvers.js` - will define resolvers to resolve `postType`
+- `resolvers/postsResolvers.js` - will define resolvers to resolve `authorType`
+- `resolvers/index.js` - will `posts` query
 
 ## Instructions
 
-1. Write GraphQL Schema definition by defining root level `Query` type with one
-   single `hello` query that will return a `String`
-
-Example of how to write a schema:
+We want to get in the end of this exercise to the point where we are able to run
+the following query:
 
 ```graphql
-# A book has a title and an author
-type Book {
-  title: String
-  author: Author
-}
-
-# An author has a name and a list of books
-type Author {
-  name: String
-  books: [Book]
-}
-```
-
-You define your data graph's supported queries as fields of a special type
-called the Query type.
-
-```javascript
-const typeDefs = gql`
-    type Query {
-      #Your queries definition goes here
+query getPosts {
+  posts(order: ASC, limit: 2) {
+    id
+    title
+    content
+    author {
+      name
+      avatarUrl
     }
-`
-```
-
-2.add resolver for hello query that will return "Hello GraphQL"
-
-```javascript
-const resolvers = {
-  Query: {
-    // here will go your resolver function definition
-    foo: () => 'bar',
-  },
+  }
 }
 ```
 
-3. create a new ApolloServer providing it type definitions just defined
+<details>
+<summary>
+result
+</summary>
 
-> Note: make sure to apply middleware before any app.use
-
-```javascript
-const {ApolloServer, gql} = require('apollo-server-express')
-
-const server = new ApolloServer({typeDefs, resolvers})
-server.applyMiddleware({app})
+```json
+{
+  "data": {
+    "posts": [
+      {
+        "id": "2",
+        "title": "Post Three",
+        "content": "text",
+        "author": {
+          "name": "Name",
+          "avatarUrl": "Avatar Url"
+        }
+      },
+      {
+        "id": "5",
+        "title": "Post Four",
+        "content": "text",
+        "author": {
+          "name": "Name",
+          "avatarUrl": "Avatar Url"
+        }
+      }
+    ]
+  }
+}
 ```
 
-4. add `mocks: true` to ApolloServer to make sure we are able to get
-   unimplemented resolvers through mocks. Make sure to also add
-   `mockEntireSchema: false`
+</details>
 
-#### Bonus Excercise
+**Steps:**
 
-5. Add the following resolver to resolver definition.
+1. Write a new query definition to query all posts in `typeDefs/query.js`
+2. Define Author type in `typeDefs/types/authorType.js` and Post type in
+   `postType`. Import these types in `typeDefs/index.js` (Uncomment the code
+   there)
+3. Create posts root query resolver in `resolvers/postsResolvers.js` to return
+   dummy Data provided in the resolver
+4. Define `ORDER` [enum](https://graphql.org/learn/schema/#enumeration-types)
+   with `ASC` and `DESC`
+5. Define `posts` root query to accept `order` and `limit` arguments
+6. implement order and limit functionality in `postsResolver`.
+   > Note: arguments are passed to resolver in a second argument of resolver
+   > function. [More here](https://graphql.org/learn/execution/)
+7. Create Author type resolver that will include resolvers for two fields
+   `avatarUrl` and `name`. They need to return result as in sample payload above
 
-```
-    helloWithMessage: (_, {message}) => message,
-```
+### Solution
 
-The server will crash cause there is no schema definition for it. Your task is
-to define proper schema for it. Note that `message` is an argument
+You can run final version of the app by executing `npm run start:final` and
+exploring the final version for this exercise(`.final.js` files and `final`
+folders)
