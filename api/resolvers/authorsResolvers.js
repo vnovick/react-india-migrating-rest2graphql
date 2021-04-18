@@ -4,13 +4,17 @@ const fetchDataFromDataSource = async ({field, dataSource}, authorId) => {
 }
 
 const authorsResolvers = {
+  // Mutation: {
+  //   insertAuthor: async (_, {input}, {dataSources}) => {
+  // TODO: create insertAuthor resolver
+  //   },
+  // },
   Author: {
     name: async (authorId, args, {dataSources}) => {
       return fetchDataFromDataSource(
         {
           field: 'name',
-          // TODO: Switch to different data source
-          dataSource: dataSources.postsAPI,
+          dataSource: dataSources.postsJsonAPI,
         },
         authorId,
       )
@@ -19,8 +23,7 @@ const authorsResolvers = {
       return fetchDataFromDataSource(
         {
           field: 'avatarUrl',
-          // TODO: Switch to different data source
-          dataSource: dataSources.postsAPI,
+          dataSource: dataSources.postsJsonAPI,
         },
         authorId,
       )

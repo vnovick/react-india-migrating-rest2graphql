@@ -14,8 +14,7 @@ const limit = (data, limit) => data.slice(0, limit)
 const postsResolvers = {
   Query: {
     posts: async (_, args, {dataSources}) => {
-      // TODO: Switch to different data source
-      const postsResult = await dataSources.postsAPI.getPosts()
+      const postsResult = await dataSources.postsJsonAPI.getPosts()
 
       // Order first
       const posts = args.order
