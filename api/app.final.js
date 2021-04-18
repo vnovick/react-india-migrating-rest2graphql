@@ -8,6 +8,7 @@ const cors = require('cors')
 const {ApolloServer, gql} = require('apollo-server-express')
 const {typeDefs} = require('./typeDefs')
 const {resolvers} = require('./resolvers/final')
+const {PostsRESTAPI} = require('./data/postsDataSource.final')
 
 const app = express()
 
@@ -19,6 +20,11 @@ const server = new ApolloServer({
   resolvers,
   mocks: true,
   mockEntireSchema: false,
+  dataSources: () => {
+    return {
+      postsAPI: new PostsRESTAPI(),
+    }
+  },
 })
 
 server.applyMiddleware({app})

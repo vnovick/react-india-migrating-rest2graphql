@@ -1,4 +1,4 @@
-# Exercise 5 - Implementing temporary resolvers for Queries
+# Exercise Exercise 6 - Batch REST requests with REST Data Source
 
 ## Background
 
@@ -7,95 +7,87 @@ cd api
 npm install
 ```
 
+Our `api` includes a new dependency: `apollo-datasource-rest`
+
+typically you install it by running
+
+```sh
+npm install apollo-datasource-rest --save
+```
+
+but I've included it in package.json already.
+
 #### Files
 
 These files should be modified during exercise. They also include **TODO**
 comments for your convenience
 
-- `resolvers/postsResolvers.js` - will export resolvers relevant to posts
-- `resolvers/authorsResolvers.js` - will export resolvers relevant to authors
+- `app.js`
+- `data/postsDataSource.js` - A new file that will include RESTDataSource
+- `resolvers/postsResolvers.js` - will switch to use data source
+- `resolvers/authorsResolvers.js` - will switch to use data source
+
+## Note
+
+Before starting out note the amount of REST calls executed on the server. You
+can see it by looking into our api output in terminal. We will see something
+like this:
+
+```sh
+GET /api/posts 200 7.345 ms - 7046
+GET /api/authors/3 200 4.673 ms - 458
+GET /api/authors/3 200 4.624 ms - 458
+GET /api/authors/2 200 4.681 ms - 457
+GET /api/authors/2 200 6.653 ms - 457
+GET /api/authors/3 200 6.802 ms - 458
+GET /api/authors/3 200 6.930 ms - 458
+```
 
 ## Instructions
 
-We want to get in the end of this exercise to the point where we are able to run
-the following query:
+In previous exercise you've noticed that you have lots of unneeded requests to
+REST api endpoint. In this exercise we will batch and dedupe our REST requests
+using `apollo-datasource-rest`. In the end we will execute only necessary
+requests to REST api endpoint.
 
-```graphql
-query getPosts {
-  posts(order: DESC, limit: 3) {
-    id
-    title
-    author {
-      name
-      avatarUrl
-    }
-  }
-}
+In the end of exercise that's how our log in terminal should look like
+
+```sh
+GET /api/posts 200 6.808 ms - 7046
+GET /api/authors/2 200 3.110 ms - 457
+GET /api/authors/3 200 3.866 ms - 458
 ```
-
-<details>
-<summary>
-result
-</summary>
-
-```json
-{
-  "data": {
-    "posts": [
-      {
-        "id": "12",
-        "title": "Reprehenderit excepteur quis nulla dolore elit est velit laboris et adipisicing Lorem adipisicing labore.",
-        "author": {
-          "name": "Name",
-          "avatarUrl": "https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=3759e09a5b9fbe53088b23c615b6312e"
-        }
-      },
-      {
-        "id": "11",
-        "title": "Laboris nulla pariatur incididunt velit voluptate ea.",
-        "author": {
-          "name": "Name",
-          "avatarUrl": "https://images.unsplash.com/photo-1513732822839-24f03a92f633?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-        }
-      },
-      {
-        "id": "10",
-        "title": "Ea do irure aliqua mollit amet ex proident.",
-        "author": {
-          "name": "Name",
-          "avatarUrl": "https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=3759e09a5b9fbe53088b23c615b6312e"
-        }
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-posts should be brought this time from `http://localhost:3001/api/posts` and
-avatarUrl should be resolved from
-`http://localhost:3001/api/authors/${authorId}` in `Author` type resolver
 
 **Steps:**
 
-1. Use
-   [`async` resolver](https://graphql.org/learn/execution/#asynchronous-resolvers)
-   to fetch all posts data (with `node-fetch`) from
-   `http://localhost:3001/api/posts` and return it from resolver
-2. load `avatarUrl` from `http://localhost:3001/api/authors/${authorId}`
-   endpoint in `Author` `avatarUrl` field resolver
+1. Create `data/postsDataSource.js` and create `PostsRESTAPI` class that will
+   extend `RESTDataSource` Don't forget to include it from
+   `apollo-datasource-rest`. Follow
+   [Docs](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-datasource-rest)
 
-   > Hint: in order to pass `authorId` to Author resolver you need to map over
-   > posts and return `author: posts.authorId`. Then to access it from `async`
-   > resolver you can use first argument of resolver function. Read more
-   > [here](https://graphql.org/learn/execution/)
+2. Create `getPosts` method:
+
+```javascript
+  async getPosts() {
+    return this.get(`posts`)
+  }
+```
+
+3. Implement `getAuthorById` method
+4. provide data source to `ApolloServer`
+
+```javascript
+  dataSources: () => {
+    return {
+      postsAPI: new PostsRESTAPI(),
+    }
+  },
+```
+
+2. Switch both posts and authors using data source by accessing it through
+   resolver
+   [context](https://graphql.org/learn/execution/#root-fields-resolvers)
 
 ## Extra Credit
 
-- Implement "where" argument for Author type to find author by name
-
-### Solution
-
-You can run final version of the app by executing `npm run start:final` and
-exploring the final version
+- In `authorsResolver` abstract dataSource access into separate function
