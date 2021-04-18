@@ -34,7 +34,16 @@ const sort = (data, sortingKey, order) =>
 // Limit helper function to accept data and limit number
 const limit = (data, limit) => data.slice(0, limit)
 
-const postsResolvers = {}
+const postsResolvers = {
+  Query: {
+    posts: (obj, args, context) => {
+      const posts = args.order ? sort(dummyData, 'id', args.order) : dummyData
+      const limitedPosts = args.limit ? limit(posts, args.limit) : posts
+      return limitedPosts
+      //TODO: Load data from http://localhost:3001/api/posts. Use `async` resolver for that
+    },
+  },
+}
 
 module.exports = {
   postsResolvers,

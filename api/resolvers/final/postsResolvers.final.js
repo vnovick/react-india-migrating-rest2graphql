@@ -1,28 +1,5 @@
 const fetch = require('node-fetch')
 
-const dummyData = [
-  {
-    id: 8,
-    title: 'Post One',
-    content: 'text',
-  },
-  {
-    id: 6,
-    title: 'Post Two',
-    content: 'text',
-  },
-  {
-    id: 2,
-    title: 'Post Three',
-    content: 'text',
-  },
-  {
-    id: 5,
-    title: 'Post Four',
-    content: 'text',
-  },
-]
-
 // Sorting helper function to sort either ASC or DESC
 const sort = (data, sortingKey, order) =>
   data.sort(
@@ -36,9 +13,19 @@ const limit = (data, limit) => data.slice(0, limit)
 
 const postsResolvers = {
   Query: {
-    posts: (obj, args, context) => {
-      const posts = args.order ? sort(dummyData, 'id', args.order) : dummyData
-      return args.limit ? limit(posts, args.limit) : posts
+    posts: async (_, args) => {
+      const result = await fetch(`http://localhost:3001/api/posts`)
+      const postsResult = await result.json()
+      const posts = args.order
+        ? sort(postsResult, 'id', args.order)
+        : postsResult
+      const limitedPosts = args.limit ? limit(posts, args.limit) : posts
+      return limitedPosts.map((post) => ({
+        ...post,
+        author: post.authorId,
+      }))
+
+      return posts
     },
   },
 }

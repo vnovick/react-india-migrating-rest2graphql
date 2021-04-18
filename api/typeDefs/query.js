@@ -1,10 +1,13 @@
 const {gql} = require('apollo-server-express')
 
 const query = gql`
-  # TODO: Define order enum
+  enum ORDER {
+    ASC
+    DESC
+  }
   type Query {
     hello: String
-    # TODO: Define posts root query which you can order and limit
+    posts(order: ORDER, limit: Int): [Post]
   }
 `
 
