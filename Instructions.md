@@ -36,7 +36,7 @@ post.
    `types/postType.js` and have `authorId`
 5. Implement `insertPost` resolver to insert a post
 
-## Home Work
+## Bonus
 
 - Configure `PostInputType` to accept `authorIdLegacy` as `Int` and change
   `postsJsonDataSource` accordingly to accommodate the change
