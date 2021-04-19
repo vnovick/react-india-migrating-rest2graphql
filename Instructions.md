@@ -62,3 +62,14 @@ const client = new ApolloClient({
 1. Add Error Handling to your API
    (https://www.apollographql.com/docs/apollo-server/data/errors/)
 2. Create `getPostById` query and implement `Post` page
+
+Further Read:
+
+[Slides](https://slides.com/vladimirnovick/graphql-intro)
+
+- [Apollo Docs](https://www.apollographql.com/docs) - Apollo Server
+  documentation
+- [GraphQL.org](https://graphql.org/learn) - Learn the language
+- [Hasura](hasura.io) - Auto generating your GraphQL API
+- [GraphQL Code Generator](https://www.graphql-code-generator.com/)
+- [Egghead instructor page](https://egghead.io/q/resources-by-vladimir-novick)
