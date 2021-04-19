@@ -10,7 +10,7 @@ const authorsResolvers = {
     },
   },
   Author: {
-    name: async (authorId, args, {dataSources}) => {
+    name: async ({id: authorId}, args, {dataSources}) => {
       return fetchDataFromDataSource(
         {
           field: 'name',
