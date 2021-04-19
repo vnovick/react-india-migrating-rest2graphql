@@ -29,8 +29,6 @@ const postsResolvers = {
         ...post,
         author: post.authorId,
       }))
-
-      return posts
     },
   },
 }
