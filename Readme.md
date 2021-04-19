@@ -110,14 +110,14 @@ Start by cloning the exercise repo.
 `git checkout exercise-1`
 
 follow
-[Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-1/Instructions.md)
+[Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-1/Instructions.md)
 
 ## Exercise 2 - Explore GraphQL queries and mutations
 
 `git checkout exercise-2`
 
 follow
-[Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-2/Instructions.md)
+[Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-2/Instructions.md)
 
 ## Exercise 3 - GraphQL endpoint setup
 
@@ -130,7 +130,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-3/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-3/Instructions.md)
 
 ## Exercise 4 - Design GraphQL Schema
 
@@ -143,7 +143,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-4/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-4/Instructions.md)
 
 ## Exercise 5 - Implementing temporary resolvers for Queries
 
@@ -156,7 +156,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-5/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-5/Instructions.md)
 
 ## Exercise 6 - Batch REST requests with REST Data Source
 
@@ -169,7 +169,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-6/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-6/Instructions.md)
 
 ## Exercise 7 - Migrate to the same data source
 
@@ -182,7 +182,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-7/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-7/Instructions.md)
 
 ## Exercise 8 - Implement Mutations and Input types
 
@@ -195,7 +195,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/moving-from-rest-to-graphql/blob/exercise-8/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-8/Instructions.md)
 
 ## Author
 
