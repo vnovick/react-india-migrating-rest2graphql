@@ -197,6 +197,22 @@ npm install
 - follow
   [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-8/Instructions.md)
 
+## Exercise 9 - Migrating Client side to GraphQL
+
+- `git checkout exercise-8`
+- install dependencies:
+
+```sh
+cd api
+npm install
+
+cd frontend
+npm install
+```
+
+- follow
+  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-9/Instructions.md)
+
 ## Author
 
 Hi, I am 👤 **Vladimir Novick**
