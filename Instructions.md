@@ -91,10 +91,6 @@ avatarUrl should be resolved from
    > resolver you can use first argument of resolver function. Read more
    > [here](https://graphql.org/learn/execution/)
 
-## Extra Credit
-
-- Implement "where" argument for Author type to find author by name
-
 ### Solution
 
 You can run final version of the app by executing `npm run start:final` and
