@@ -56,6 +56,7 @@ class PostsJsonDataSource extends DataSource {
     result[key].push(data)
     writeFile(this.jsonDbPath, JSON.stringify(result, null, 2))
     await this.keyValueCache.set(CACHE_KEY, result)
+    return data
   }
 
   async getPosts() {
@@ -73,7 +74,8 @@ class PostsJsonDataSource extends DataSource {
       id: uuidv4(),
       ...input,
     }
-    // TODO: add an author and return it back
+    await this.add('authors', author)
+    return author
   }
 
   async insertPost(input) {
@@ -84,15 +86,21 @@ class PostsJsonDataSource extends DataSource {
       // ...filterOutKey(input, 'authorIdLegacy'),
       ...input,
     }
-
-    //TODO: check if we have input.authorId and if we do then add post data using this.add
-
+    if (input.authorId) {
+      return await this.add('posts', post)
+    }
     // ------------Extra credit 1 ------
-    // TODO: check whether we have either authorId or authorIdLegacy
+    // if (input.authorId || input.authorIdLegacy) {
+    //   return await this.add('posts', post)
+    // }
     // ----------- Extra credit 2 -------
     // if (input.author) {
-    // TODO: insert user reusing this.insertUser function, get authorId and then
-    // insert it as authorId inside new post
+    //   const author = await this.insertAuthor(input.author)
+    //   const insertPost = await this.add('posts', {
+    //     ...filterOutKey(post, 'author'),
+    //     authorId: author.id,
+    //   })
+    //   return insertPost
     // }
     throw new Error('no author Id provided')
   }

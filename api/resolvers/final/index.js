@@ -1,4 +1,4 @@
-const {postsResolvers} = require('./postsResolvers.final')
+const {postsResolvers} = require('../postsResolvers')
 const {authorsResolvers} = require('./authorsResolvers.final')
 
 const helloResolver = {

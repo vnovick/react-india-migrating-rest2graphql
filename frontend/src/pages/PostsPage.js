@@ -3,6 +3,7 @@ import { Box, Grid } from '@chakra-ui/react';
 import { Post } from '../components/Post';
 
 export function PostsPage() {
+  //TODO: remove state handling and fetching and substitute with useQuery
   const [posts, setPosts] = useState([]);
 
   async function getPosts() {

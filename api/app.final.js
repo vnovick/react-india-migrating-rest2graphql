@@ -9,7 +9,7 @@ const {ApolloServer, gql} = require('apollo-server-express')
 const {typeDefs} = require('./typeDefs/index.final')
 const {resolvers} = require('./resolvers/final')
 const {PostsRESTAPI} = require('./data/postsDataSource')
-const {PostsJsonDataSource} = require('./data/postsJsonDataSource.final')
+const {PostsJsonDataSource} = require('./data/postsJsonDataSource')
 const app = express()
 
 ///////////Here we will start GraphQL implementation

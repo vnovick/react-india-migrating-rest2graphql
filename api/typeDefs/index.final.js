@@ -1,6 +1,6 @@
-const {query} = require('./query')
-const {mutation} = require('./mutation.final')
-const {postType, authorType} = require('./types/final')
+const {query} = require('./query.final')
+const {mutation} = require('./mutation')
+const {postType, authorType} = require('./types')
 
 const typeDefs = [query, mutation, postType, authorType]
 

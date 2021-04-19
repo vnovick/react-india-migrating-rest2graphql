@@ -4,7 +4,10 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Router } from '@reach/router';
 import { PostsPage, ProfilePage } from './pages';
 
+//TODO: Create ApolloClient
+
 function App() {
+  //TODO: Wrap App with ApolloProvider from '@apollo/client/react'
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">

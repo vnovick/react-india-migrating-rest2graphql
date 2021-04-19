@@ -1,9 +1,12 @@
-# Exercise 8 - Implement Mutations and Input types
+# Exercise 9 - Change Frontend to consume GraphQL
 
 ## Background
 
 ```sh
 cd api
+npm install
+
+cd frontend
 npm install
 ```
 
@@ -12,33 +15,44 @@ npm install
 These files should be modified during exercise. They also include **TODO**
 comments for your convenience
 
-- `app.js`
-- `data/postsJsonDataSource.js`
-- `typeDefs/types/postType.js`
-- `types/mutation.js`
-- `resolvers/postsResolvers.js`
-- `resolvers/authorsResolvers.js`
+- `frontend/App.js`
+- `frontend/src/pages/ProfilePage.js`
+- `frontend/src/pages/PostPage.js`
+- `frontend/src/components/Post.js`
+- `api/typeDefs/query`
+- `api/resolvers/authorsResolvers`
 
 ## Instructions
 
-In this exercise we will migrate create Mutations for creating a new user and
-post.
+In this exercise we will migrate our client to GraphQL
 
 **Steps:**
 
-1. Define `insertAuthor` root mutation in `mutation.js` that accepts
-   `AuthorInputType`
-2. Create a resolver in `authorsResolvers.js` that will call
-   `postsJsonAPI.insertAuthor` function
-3. Implement `insertAuthor` function in `postsJsonDataSource.js`
-4. Create a new root Mutation `insertPost` and configure it to accept
-   `PostInputType` input type. Input type should be defined in
-   `types/postType.js` and have `authorId`
-5. Implement `insertPost` resolver to insert a post
+#### Backend
 
-## Home Work
+1. Define `authors` root query in `query.js` that accepts `userId` and
+   `legacyUserId`
+2. Create a resolver in `authorsResolvers.js` that will get user by Id (Tip:
+   Think about resolver resolution order and the best way to change fields
+   resolution)
 
-- Configure `PostInputType` to accept `authorIdLegacy` as `Int` and change
-  `postsJsonDataSource` accordingly to accommodate the change
-- Configure `insertPost` mutation to accept both `authorId` or `AuthorInputType`
-- Implement resolver, so we can insert both post and user in one mutation
+#### Client
+
+3. Create Apollo Client in `frontend/src/App.js` and wrap our app with
+   `ApolloProvider` passing client instance
+
+```
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3001/graphql',
+  cache: new InMemoryCache(),
+});
+```
+
+4. define `getPosts` query using `gql` in `frontend/src/pages/PostsPage.js`
+5. Use `useQuery` hook to retrieve `data`, `error` and `loading` states
+6. Change the page to show different UI based on the state (Spinner for loading,
+   error for error and posts when data is resolved)
+7. Make sure you retrieve the correct data at `Post.js` component
