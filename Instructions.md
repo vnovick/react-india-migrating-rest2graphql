@@ -56,3 +56,9 @@ const client = new ApolloClient({
 6. Change the page to show different UI based on the state (Spinner for loading,
    error for error and posts when data is resolved)
 7. Make sure you retrieve the correct data at `Post.js` component
+
+### Home Assignment
+
+1. Add Error Handling to your API
+   (https://www.apollographql.com/docs/apollo-server/data/errors/)
+2. Create `getPostById` query and implement `Post` page
