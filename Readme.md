@@ -270,16 +270,16 @@ specification. Contributions of any kind welcome!
 [license-badge]:
   https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
 [license]:
-  https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/master/README.md#license
+  https://github.com/vnovick/react-india-migrating-rest2graphql/blob/master/README.md#license
 [prs-badge]:
   https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
 [coc-badge]:
   https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
 [coc]:
-  https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/master/CODE_OF_CONDUCT.md
+  https://github.com/vnovick/react-india-migrating-rest2graphql/blob/master/CODE_OF_CONDUCT.md
 [win-path]:
   https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/
 [mac-path]: http://stackoverflow.com/a/24322978/971592
 [issue]:
-  https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/issues/new
+  https://github.com/vnovick/react-india-migrating-rest2graphql/issues/new
