@@ -110,14 +110,14 @@ Start by cloning the exercise repo.
 `git checkout exercise-1`
 
 follow
-[Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-1/Instructions.md)
+[Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-1/Instructions.md)
 
 ## Exercise 2 - Explore GraphQL queries and mutations
 
 `git checkout exercise-2`
 
 follow
-[Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-2/Instructions.md)
+[Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-2/Instructions.md)
 
 ## Exercise 3 - GraphQL endpoint setup
 
@@ -130,7 +130,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-3/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-3/Instructions.md)
 
 ## Exercise 4 - Design GraphQL Schema
 
@@ -143,7 +143,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-4/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-4/Instructions.md)
 
 ## Exercise 5 - Implementing temporary resolvers for Queries
 
@@ -156,7 +156,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-5/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-5/Instructions.md)
 
 ## Exercise 6 - Batch REST requests with REST Data Source
 
@@ -169,7 +169,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-6/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-6/Instructions.md)
 
 ## Exercise 7 - Migrate to the same data source
 
@@ -182,7 +182,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-7/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-7/Instructions.md)
 
 ## Exercise 8 - Implement Mutations and Input types
 
@@ -195,7 +195,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-8/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-8/Instructions.md)
 
 ## Exercise 9 - Migrating Client side to GraphQL
 
@@ -211,7 +211,7 @@ npm install
 ```
 
 - follow
-  [Instructions.md](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/blob/exercise-9/Instructions.md)
+  [Instructions.md](https://github.com/vnovick/react-india-migrating-rest2graphql/blob/exercise-9/Instructions.md)
 
 ## Author
 
@@ -227,7 +227,7 @@ Hi, I am 👤 **Vladimir Novick**
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check
-[issues page](https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/issues).
+[issues page](https://github.com/vnovick/react-india-migrating-rest2graphql/issues).
 
 ## Show your support
 
@@ -255,7 +255,7 @@ Thanks goes to these wonderful people
 
 <table>
   <tr>
-    <td align="center"><a href="https://vnovick.com"><img src="https://avatars1.githubusercontent.com/u/3762909?v=4" width="100px;" alt=""/><br /><sub><b>Vladimir Novick</b></sub></a><br /><a href="https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/commits?author=vnovick" title="Code">💻</a> <a href="https://github.com/vnovick/HyperCoreAB_migrating-from-rest-to-graphql/commits?author=vnovick" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://vnovick.com"><img src="https://avatars1.githubusercontent.com/u/3762909?v=4" width="100px;" alt=""/><br /><sub><b>Vladimir Novick</b></sub></a><br /><a href="https://github.com/vnovick/react-india-migrating-rest2graphql/commits?author=vnovick" title="Code">💻</a> <a href="https://github.com/vnovick/react-india-migrating-rest2graphql/commits?author=vnovick" title="Documentation">📖</a></td>
   </tr>
 </table>
 
