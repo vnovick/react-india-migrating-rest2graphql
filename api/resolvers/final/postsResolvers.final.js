@@ -17,7 +17,9 @@ const postsResolvers = {
       const postsResult = await dataSources.postsAPI.getPosts()
 
       // Order first
-      const posts = args.order ? sort(postsResult, 'id', args.order) : args
+      const posts = args.order
+        ? sort(postsResult, 'id', args.order)
+        : postsResult
 
       // Limit
       const limitedPosts = args.limit ? limit(posts, args.limit) : posts

@@ -12,54 +12,59 @@ const {PostsRESTAPI} = require('./data/postsDataSource.final')
 
 const app = express()
 
-///////////Here we will start GraphQL implementation
+async function startServer() {
+  ///////////Here we will start GraphQL implementation
 
-// Construct a schema, using GraphQL schema language
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  mocks: true,
-  mockEntireSchema: false,
-  dataSources: () => {
-    return {
-      postsAPI: new PostsRESTAPI(),
-    }
-  },
-})
+  // Construct a schema, using GraphQL schema language
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    mocks: true,
+    mockEntireSchema: false,
+    dataSources: () => {
+      return {
+        postsAPI: new PostsRESTAPI(),
+      }
+    },
+  })
 
-server.applyMiddleware({app})
+  await server.start()
 
-//////////////// End of GraphQL section
+  server.applyMiddleware({app})
 
-app.use(logger('dev'))
+  //////////////// End of GraphQL section
 
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
-app.use(cookieParser())
-app.use(cors())
+  app.use(logger('dev'))
 
-//----------------------------------------------------
+  app.use(express.json())
+  app.use(express.urlencoded({extended: false}))
+  app.use(cookieParser())
+  app.use(cors())
 
-// JSON server mocks
+  //----------------------------------------------------
 
-app.use('/api', jsonServer.router('db.json'))
+  // JSON server mocks
 
-//----------------------------------------------------
+  app.use('/api', jsonServer.router('db.json'))
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404))
-})
+  //----------------------------------------------------
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+  // catch 404 and forward to error handler
+  app.use(function (req, res, next) {
+    next(createError(404))
+  })
 
-  // render the error page
-  res.status(err.status || 500)
-  res.json(err)
-})
+  // error handler
+  app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message
+    res.locals.error = req.app.get('env') === 'development' ? err : {}
+
+    // render the error page
+    res.status(err.status || 500)
+    res.json(err)
+  })
+}
+startServer()
 
 module.exports = app
