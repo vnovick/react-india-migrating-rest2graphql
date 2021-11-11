@@ -40,7 +40,7 @@ download it.
 1. Clone the repo
 
 ```
-git clone git@github.com:vnovick/moving-from-rest-to-graphql.git
+git clone git@github.com:vnovick//react-india-migrating-rest2graphql.git
 ```
 
 2. Install all frontend dependencies
